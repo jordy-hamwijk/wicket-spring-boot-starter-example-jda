@@ -1,0 +1,35 @@
+wicket:
+  stuff:
+    datastore:
+      hazelcast:
+        enabled: false
+  core:
+    resourcesettings:
+      packageresourceguard:
+        pattern:
+        - +*.map
+    csrf:
+      accepted-origins:
+        - localhost
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+server:
+  compression:
+    enabled: true
+  port: 8080
+spring:
+  main:
+    allow-bean-definition-overriding: true
+  jpa:
+    hibernate:
+      ddl-auto: none
+  liquibase:
+    change-log: classpath:/db/changelog/db.changelog-master.xml
+  session:
+    store-type: jdbc
+    jdbc:
+      initialize-schema: always
+      schema: classpath:org/springframework/session/jdbc/schema-h2.sql

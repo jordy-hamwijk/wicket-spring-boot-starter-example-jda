@@ -1,0 +1,31 @@
+<html xmlns:wicket="http://wicket.apache.org">
+<body>
+<wicket:extend>
+	
+	<h1>Customer Create</h1>
+	
+	<form wicket:id="form">
+		<div wicket:id="usernameBorder">
+			<input type="text" wicket:id="username"/>
+		</div>
+		<div wicket:id="firstnameBorder">
+			<input type="text" wicket:id="firstname"/>
+		</div>
+		<div wicket:id="lastnameBorder">
+			<input type="text" wicket:id="lastname"/>
+		</div>
+		<div wicket:id="passwordBorder">
+			<input type="password" wicket:id="password"/>
+		</div>
+		<div wicket:id="activeBorder">
+			<input type="checkbox" wicket:id="active"/>
+		</div>
+		<button type="submit" wicket:id="submit">Save</button>
+		<button type="submit" wicket:id="cancel">Cancel</button>
+		
+	</form>
+	
+	
+</wicket:extend>
+</body>
+</html>
