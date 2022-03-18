@@ -30,6 +30,9 @@ public class CheeseShop extends BasePage {
             protected void populateItem(ListItem<Cheese> item) {
 
                 item.add(new Label("soort", item.getModelObject().getSoortKaas()));
+                item.add(new Label("land", item.getModelObject().getLandHerkomst()));
+                item.add(new Label("gewicht", item.getModelObject().getGewicht()));
+
             }
         };
 
