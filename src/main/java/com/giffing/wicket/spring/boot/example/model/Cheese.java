@@ -1,8 +1,6 @@
 package com.giffing.wicket.spring.boot.example.model;
 
-import lombok.Getter;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -11,24 +9,53 @@ import javax.persistence.Id;
 import java.io.Serializable;
 
 @Entity
-@Getter
-@Setter
 @NoArgsConstructor
 public class Cheese implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String Soorten;
-    private String LandHerkomst;
-    private String Gewicht;
+    public Long getId() {
+        return id;
+    }
 
+    public void setId(Long id) {
+        this.id = id;
+    }
 
-    public Cheese(String soorten, String landHerkomst, String gewicht) {
+    public String getSoortKaas() {
+        return SoortKaas;
+    }
 
-        Soorten = soorten;
+    public void setSoortKaas(String soortKaas) {
+        SoortKaas = soortKaas;
+    }
+
+    public String getLandHerkomst() {
+        return LandHerkomst;
+    }
+
+    public void setLandHerkomst(String landHerkomst) {
         LandHerkomst = landHerkomst;
+    }
+
+    public Integer getGewicht() {
+        return Gewicht;
+    }
+
+    public void setGewicht(Integer gewicht) {
         Gewicht = gewicht;
     }
 
+    private String SoortKaas;
+    private String LandHerkomst;
+    private Integer Gewicht;
+
+
+    public Cheese(String soortKaas, String landHerkomst, Integer gewicht) {
+
+        SoortKaas = soortKaas;
+        LandHerkomst = landHerkomst;
+        Gewicht = gewicht;
+    }
 }
