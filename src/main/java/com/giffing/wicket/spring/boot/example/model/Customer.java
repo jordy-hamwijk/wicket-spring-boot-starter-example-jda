@@ -1,13 +1,12 @@
 package com.giffing.wicket.spring.boot.example.model;
 
-import java.io.Serializable;
+import com.giffing.wicket.spring.boot.example.repository.Domain;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-
-import com.giffing.wicket.spring.boot.example.repository.Domain;
+import java.io.Serializable;
 
 @Entity
 public class Customer implements Domain<Long>, Serializable {
@@ -15,17 +14,17 @@ public class Customer implements Domain<Long>, Serializable {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Long id;
-	
+
 	private String username;
-	
+
 	private String password;
-	
+
 	private String firstname;
-	
+
 	private String lastname;
-	
+
 	private boolean active;
-	
+
 	@Override
 	public Long getId() {
 		return id;
@@ -75,7 +74,7 @@ public class Customer implements Domain<Long>, Serializable {
 		this.active = active;
 	}
 
-	
-	
-	
+
+
+
 }
