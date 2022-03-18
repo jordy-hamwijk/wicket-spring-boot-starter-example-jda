@@ -6,3 +6,4 @@
 /src/main/resources/public/docs/
 
 .idea
+*.iml
