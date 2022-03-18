@@ -1,8 +1,6 @@
 
 Å
 Qsrc/main/java/com/giffing/wicket/spring/boot/example/WicketApplication.properties,4\6\4624c37969f05767b15edc3d8da81531864a9619
-{
-Ksrc/main/java/com/giffing/wicket/spring/boot/example/WicketApplication.java,0\9\097a551d85cc6018595e0b6980b3d008387e95b6
 ã
 [src/main/java/com/giffing/wicket/spring/boot/example/web/pages/errors/AccessDeniedPage.java,0\3\030f3df814ae2d595a971889c9a1d234354c19ec
 ã
@@ -17,12 +15,8 @@ Rsrc/main/java/com/giffing/wicket/spring/boot/example/repository/DefaultFilter.j
 fsrc/main/java/com/giffing/wicket/spring/boot/example/repository/services/DefaultRepositoryService.java,c\1\c1d08d6803047bb1179706cdbf30522ef2df2bd7
 ö
 jsrc/main/java/com/giffing/wicket/spring/boot/example/repository/services/customer/filter/CustomerSort.java,b\d\bd07198d8a6b565fbe8bdced547a4b4e464e0def
-É
-Ssrc/main/java/com/giffing/wicket/spring/boot/example/web/pages/login/LoginPage.html,5\4\54fbdc3153283616f387902066f7c4686b7a5136
 Ü
 Vsrc/main/java/com/giffing/wicket/spring/boot/example/web/html/panel/FeedbackPanel.html,d\3\d37a64ad3b7a2ee263eb2ff7ba2031630bd2a5a7
-å
-\src/main/java/com/giffing/wicket/spring/boot/example/web/SpringBootWebPackageIdentifier.java,2\8\2874b37fda678945afb6dc9f321f269c14ecb5a4
 Ü
 Vsrc/main/java/com/giffing/wicket/spring/boot/example/web/general/notify/jquery.noty.js,5\1\51a1eb169a7891f3904430f8aff1efcbcc4fd5d1
 ì
@@ -43,8 +37,6 @@ esrc/main/java/com/giffing/wicket/spring/boot/example/web/wicket/dataprovider/De
 Vsrc/main/java/com/giffing/wicket/spring/boot/example/web/pages/websocket/ChatPage.java,8\9\89b57c19d1897fbbf1510eb463b86ac66dbd6010
 ü
 osrc/main/java/com/giffing/wicket/spring/boot/example/web/general/action/panel/items/AbstractActionItemLink.html,0\4\0447fe1e27d68b63972b82607568127fd13ea176
-|
-Lsrc/main/java/com/giffing/wicket/spring/boot/example/web/pages/BasePage.java,4\1\4195d26920e09ce3fda5035022ebddb9604731ab
 Ü
 Vsrc/main/java/com/giffing/wicket/spring/boot/example/web/html/panel/FeedbackPanel.java,6\1\613657602b5093ccbd718f014c491d572b82b48e
 é
