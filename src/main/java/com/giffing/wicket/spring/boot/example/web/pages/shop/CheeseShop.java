@@ -6,6 +6,7 @@ import org.apache.wicket.markup.html.WebMarkupContainer;
 import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.markup.html.list.ListItem;
 import org.apache.wicket.markup.html.list.ListView;
+import org.apache.wicket.model.PropertyModel;
 
 import java.util.Arrays;
 import java.util.List;
@@ -25,14 +26,13 @@ public class CheeseShop extends BasePage {
         datacontainer.setOutputMarkupId(true);
         add(datacontainer);
 
-        ListView<Cheese> listview = new ListView<Cheese>("rows", soorten) {
+        ListView<Cheese> listview = new ListView<Cheese>("items", soorten) {
             @Override
             protected void populateItem(ListItem<Cheese> item) {
 
                 item.add(new Label("soort", item.getModelObject().getSoortKaas()));
                 item.add(new Label("land", item.getModelObject().getLandHerkomst()));
-                item.add(new Label("gewicht", item.getModelObject().getGewicht()));
-
+                item.add(new Label("gewicht", new PropertyModel<>(item.getModel(), "gewicht")));
             }
         };
 
@@ -40,5 +40,16 @@ public class CheeseShop extends BasePage {
 
         datacontainer.setVersioned(false);
     }
+//
+//    public CheeseShop() {
+//        add(new ListView<Cheese>("soort", new PropertyModel<Cheese>(this, "kaasSoort")) {
+//
+//
+//            @Override
+//            protected void populateItem(ListItem<Cheese> item) {
+//                Cheese cheese = (soorten) g;
+//            }
+//        });
+//    }
 }
 
