@@ -22,6 +22,19 @@
         </tbody>
     </table>
 
+    <wicket:extend>
+        In het onderstaande veld worden de kaas soorten automatisch aangevuld.<br/><br/>
+
+        <form wicket:id="forms">
+            Kaas soort: <input type="text" wicket:id="ac" size="50"/>
+            <br/>
+            Geschiedenis van geselecteerde waarden:
+            <br/>
+            <div wicket:id="history"></div>
+        </form>
+
+    </wicket:extend>
+
 </wicket:extend>
 
 </body>
