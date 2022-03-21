@@ -2,20 +2,18 @@ package com.giffing.wicket.spring.boot.example.web.pages.shop;
 
 import com.giffing.wicket.spring.boot.example.model.Cheese;
 import com.giffing.wicket.spring.boot.example.web.pages.BasePage;
-import org.apache.wicket.ajax.AjaxRequestTarget;
-import org.apache.wicket.ajax.form.AjaxFormSubmitBehavior;
-import org.apache.wicket.extensions.ajax.markup.html.autocomplete.AutoCompleteTextField;
 import org.apache.wicket.markup.html.WebMarkupContainer;
 import org.apache.wicket.markup.html.basic.Label;
-import org.apache.wicket.markup.html.basic.MultiLineLabel;
+import org.apache.wicket.markup.html.form.Button;
 import org.apache.wicket.markup.html.form.Form;
+import org.apache.wicket.markup.html.form.TextField;
 import org.apache.wicket.markup.html.list.ListItem;
 import org.apache.wicket.markup.html.list.ListView;
 import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.PropertyModel;
-import org.apache.wicket.util.string.Strings;
 
-import java.util.*;
+import java.util.Arrays;
+import java.util.List;
 
 public class CheeseShop extends BasePage {
     private static final long serialVersionUID = 1L;
@@ -32,6 +30,7 @@ public class CheeseShop extends BasePage {
         datacontainer.setOutputMarkupId(true);
         add(datacontainer);
         Form<Void> form = new Form<>("forms");
+
         add(form);
         ListView<Cheese> listview = new ListView<Cheese>("items", soorten) {
             @Override
@@ -41,72 +40,40 @@ public class CheeseShop extends BasePage {
                 item.add(new Label("land", item.getModelObject().getLandHerkomst()));
                 item.add(new Label("gewicht", new PropertyModel<>(item.getModel(), "gewicht")));
             }
+
+            //
         };
 
         datacontainer.add(listview);
 
         datacontainer.setVersioned(false);
-
-
-        final IModel<String> model = new IModel<String>() {
-            private String value = null;
-
-            @Override
-            public String getObject() {
+        //TODO Stap 3 Clean up code
+        final IModel<Cheese> soorten = new IModel<Cheese>() {
+            public String getValue() {
                 return value;
             }
 
             @Override
-            public void setObject(String object) {
-                value = object;
+            public Cheese getObject() {
+                return null;
+            }
 
-                values.append('\n');
-                values.append(value);
+            private String value;
+
+        };
+        Button button1 = new Button("button1") {
+            @Override
+            public void onSubmit() {
+                info("button1.onSubmit executed");
             }
         };
-
-        final AutoCompleteTextField<String> field = new AutoCompleteTextField<String>("ac", model) {
-            @Override
-            protected Iterator<String> getChoices(String input) {
-                if (Strings.isEmpty(input)) {
-                    return Collections.emptyIterator();
-                }
-
-                List<String> choices = new ArrayList<>(10);
-
-                Locale[] locales = Locale.getAvailableLocales();
-
-                for (final Locale locale : locales) {
-                    final String country = locale.getDisplayCountry();
-
-                    if (!choices.contains(country) && country.toUpperCase(Locale.ROOT).startsWith(input.toUpperCase(Locale.ROOT))) {
-                        choices.add(country);
-                        if (choices.size() == 10) {
-                            break;
-                        }
-                    }
-                }
-
-                return choices.iterator();
-            }
+        form.add(button1);
+        final TextField<Cheese> field = new TextField<Cheese>("ac", soorten) {
+            //TODO Stap 1 Textfield logica toevoegen
+            //TODO Stap 2 onSubmit logica toevoegen
         };
         form.add(field);
 
-        final MultiLineLabel label = new MultiLineLabel("history", new PropertyModel<String>(this,
-                "values"));
-        label.setOutputMarkupId(true);
-        form.add(label);
-
-        field.add(new AjaxFormSubmitBehavior(form, "change") {
-            @Override
-            protected void onSubmit(AjaxRequestTarget target) {
-                target.add(label);
-            }
-
-            @Override
-            protected void onError(AjaxRequestTarget target) {
-            }
-        });
     }
 }
 

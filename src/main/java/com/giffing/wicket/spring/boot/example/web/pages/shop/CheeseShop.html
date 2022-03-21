@@ -18,21 +18,21 @@
             <td wicket:id="soort"></td>
             <td wicket:id="land"></td>
             <td wicket:id="gewicht"></td>
+
         </tr>
         </tbody>
     </table>
 
     <wicket:extend>
-        In het onderstaande veld worden de kaas soorten automatisch aangevuld.<br/><br/>
 
+        <br/>
+        Veld om nieuwe kaas soorten toe te voegen.
         <form wicket:id="forms">
             Kaas soort: <input type="text" wicket:id="ac" size="50"/>
             <br/>
-            Geschiedenis van geselecteerde waarden:
-            <br/>
-            <div wicket:id="history"></div>
+            <input type="submit" value="Voeg kaas soort toe"/>
+            <input wicket:id="button1" type="submit" value="Zoek kaas"/>
         </form>
-
     </wicket:extend>
 
 </wicket:extend>
