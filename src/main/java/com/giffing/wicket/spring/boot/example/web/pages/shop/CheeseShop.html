@@ -18,20 +18,18 @@
             <td wicket:id="soort"></td>
             <td wicket:id="land"></td>
             <td wicket:id="gewicht"></td>
-
         </tr>
         </tbody>
     </table>
 
     <wicket:extend>
-
         <br/>
         Veld om nieuwe kaas soorten toe te voegen.
-        <form wicket:id="forms">
-            Kaas soort: <input type="text" wicket:id="ac" size="50"/>
+        <form wicket:id="form">
+            Kaas soort: <input type="text" wicket:id="textInput" size="50"/>
             <br/>
-            <input type="submit" value="Voeg kaas soort toe"/>
-            <input wicket:id="button1" type="submit" value="Zoek kaas"/>
+            <input wicket:id="button" type="submit" value="Zoek kaas"/>
+
         </form>
     </wicket:extend>
 
