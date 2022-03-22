@@ -49,13 +49,13 @@ public class CheeseShop extends BasePage {
         form.setModel(new CompoundPropertyModel<>(new Cheese()));
         form.add(new FeedbackPanel("feedback"));
 
-        TextField<Cheese> field = new TextField<>("soortKaas");
+        TextField<String> field = new TextField<>("soortKaas");
 
         Button button = new Button("button") {
             @Override
             public void onSubmit() {
 
-                info(field.getModelObject() + "Not found");
+                info(field.getModelObject());
             }
         };
         form.add(button, field);
