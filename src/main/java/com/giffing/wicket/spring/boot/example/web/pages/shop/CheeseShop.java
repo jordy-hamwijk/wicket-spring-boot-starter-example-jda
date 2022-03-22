@@ -30,7 +30,7 @@ public class CheeseShop extends BasePage {
         datacontainer.setOutputMarkupId(true);
         add(datacontainer);
 
-        ListView<Cheese> listview = new ListView<Cheese>("items", soorten) {
+        ListView<Cheese> listview = new ListView<>("items", soorten) {
             @Override
             protected void populateItem(ListItem<Cheese> item) {
 
