@@ -1,7 +1,6 @@
 package com.giffing.wicket.spring.boot.example.model;
 
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.Entity;
@@ -9,15 +8,21 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import java.io.Serializable;
+import java.util.Date;
 
 @Getter
 @Setter
 @Entity
-@NoArgsConstructor
+
 public class Cheese implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+    public Cheese() {
+
+    }
+
 
     public Long getId() {
         return id;
@@ -61,5 +66,19 @@ public class Cheese implements Serializable {
         this.soortKaas = soortKaas;
         this.landHerkomst = landHerkomst;
         this.gewicht = gewicht;
+    }
+
+    public void setDate(Date date) {
+    }
+
+    public void setText(String s) {
+    }
+
+    public Object getDate() {
+        return null;
+    }
+
+    public String getText() {
+        return null;
     }
 }
