@@ -2,6 +2,8 @@ package com.giffing.wicket.spring.boot.example.web.pages.shop;
 
 import com.giffing.wicket.spring.boot.example.model.Cheese;
 import com.giffing.wicket.spring.boot.example.web.pages.BasePage;
+import org.apache.wicket.ajax.AjaxRequestTarget;
+import org.apache.wicket.ajax.markup.html.AjaxFallbackLink;
 import org.apache.wicket.markup.html.WebMarkupContainer;
 import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.markup.html.form.Form;
@@ -14,6 +16,7 @@ import org.apache.wicket.util.value.ValueMap;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 public class CheeseShop extends BasePage {
     private static final long serialVersionUID = 1L;
@@ -32,6 +35,8 @@ public class CheeseShop extends BasePage {
                 item.add(new Label("soort", item.getModelObject().getSoortKaas()));
                 item.add(new Label("land", item.getModelObject().getLandHerkomst()));
                 item.add(new Label("gewicht", new PropertyModel<>(item.getModel(), "gewicht")));
+
+
             }
         };
         datacontainer.add(listview);
@@ -50,7 +55,16 @@ public class CheeseShop extends BasePage {
             TextField<String> landHerkomst = new TextField<>("landHerkomst");
             TextField<Integer> gewichtKaas = new TextField<>("gewichtKaas");
             add(soortKaas, landHerkomst, gewichtKaas);
+            add(new AjaxFallbackLink<Void>("ajaxback") {
+                @Override
+                public void onClick(Optional<AjaxRequestTarget> targetOptional) {
+                    setResponsePage(getPage());
+                }
+            });
+
+            // add the add container for the todo items.
         }
+
 
         @Override
         public void onSubmit() {
@@ -62,17 +76,7 @@ public class CheeseShop extends BasePage {
 
     }
 }
-// Stap 1  extra knop verwijderen
-// Stap 2 Wicket id juist beneomen alle velden
-// Stap 3 Feedback panel toevoegen , als je op de op onSubmit drukt dat de info text word weergeven wordt. Zie voorbeeld Login.java
-// Stap 4 Clean code
-// Stap 5 Als je tekst invoert en op de knop drukt, dit moet worden weergeven in de info feedback field.
-// Stap 6 Nieuwe kaas toevoegen aan de lijst met ingevoerde tekst.
-//TODO Stap 7 Nieuwe kaas toevoegen door middel van een (AjaxSubmit)
-//TODO Stap 8 Voeg kaas soort, gewicht en land in een aparte tabel zoals in het voorbeeld op jou pagina. (tabellen)
-//TODO Stap 9 Model kaas in een mooie lijst weergeven op de pagina. ( Kijk naar customer)
-//TODO Stap 10 soort kaas aanpassen (Edit/Wijzig)
-//TODO Stap 11 Alle types kunnen
+
 
 
 
