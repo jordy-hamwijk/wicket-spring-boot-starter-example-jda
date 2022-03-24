@@ -1,23 +1,22 @@
-<html xmlns:wicket="http://wicket.apache.org">
-<wicket:head>
+<html xmlns:wicket="http://wicket.apache.org/">
+<head>
     <title>Wicket Examples - guestbook</title>
-</wicket:head>
+    <link rel="stylesheet" type="text/css" href="style.css"/>
+</head>
 <body>
 <wicket:extend>
-
-    <form wicket:id="commentForm" id="commentForm">
+    <form wicket:id="commentForm">
         Add your comment here:
         <p>
             <textarea wicket:id="text">This is a comment</textarea>
-        </p>
-        <input type="text" wicket:id="comment" class="nospam" onfocus="getElementById('formsubmit').focus();"/>
-        <br/>
-        <input type="submit" value="Submit" id="formsubmit"/>
+            <input type="text" wicket:id="comment" class="nospam" onfocus="getElementById('formsubmit').focus();"/>
+        <p>
+            <input  type="submit" value="Submit" id="formsubmit"/>
     </form>
     <p/>
-    <span wicket:id="comments" id="comments">
+    <span wicket:id="comments">
     <p>
-        <span wicket:id="date">1/1/2004</span><br/>
+        <span wicket:id="date">1/1/2004</span><br>
         <span wicket:id="text">Comment text goes here.</span>
     </p>
   </span>
