@@ -46,16 +46,16 @@ public class Cheese implements Serializable {
         return gewicht;
     }
 
-    public void setGewicht(Integer gewicht) {
+    public void setGewicht(int gewicht) {
         this.gewicht = gewicht;
     }
 
     private String soortKaas;
     private String landHerkomst;
-    private Integer gewicht;
+    private int gewicht;
 
 
-    public Cheese(String soortKaas, String landHerkomst, Integer gewicht) {
+    public Cheese(String soortKaas, String landHerkomst, int gewicht) {
 
         this.soortKaas = soortKaas;
         this.landHerkomst = landHerkomst;

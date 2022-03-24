@@ -10,14 +10,16 @@
     <table wicket:id="data">
         <thead>
         <tr>
-            <th>Kaas Soorten</th>
+            <th class="border-1">Kaas Soorten</th>
+            <th class="border-1">Land Herkomst</th>
+            <th class="border-1">Gewicht</th>
         </tr>
         </thead>
         <tbody>
         <tr wicket:id="items">
-            <td wicket:id="soort"></td>
-            <td wicket:id="land"></td>
-            <td wicket:id="gewicht"></td>
+            <td class="border-1" wicket:id="soort"></td>
+            <td class="border-1" wicket:id="land"></td>
+            <td class="border-1" wicket:id="gewicht"></td>
         </tr>
         </tbody>
     </table>
@@ -32,10 +34,10 @@
                 </div>
 
                 <div class="col-xs-3 col-md-3">
-                    Gewicht: <input type="text" size="50"/>
+                    Land Herkomst: <input type="text" wicket:id="landHerkomst" size="50"/>
                 </div>
                 <div class="col-xs-3 col-md-3">
-                    Land herkomst: <input type="text" size="50"/>
+                    Gewicht: <input type="text" wicket:id="gewichtKaas" size="50"/>
                 </div>
 
 
