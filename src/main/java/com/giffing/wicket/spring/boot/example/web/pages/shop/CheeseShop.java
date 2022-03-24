@@ -45,8 +45,8 @@ public class CheeseShop extends BasePage {
             // this is just to make the unit test happy
             setMarkupId("soortKaas");
 
-            TextField<String> field = new TextField<>("soortKaas");
-            add(field);
+            TextField<String> soortKaas = new TextField<>("soortKaas");
+            add(soortKaas);
         }
 
         @Override
@@ -56,6 +56,7 @@ public class CheeseShop extends BasePage {
             soorten.add(new Cheese((String) values.get("soortKaas"), (String) values.get( "Belgie"), (Integer) values.get(11)));
             setResponsePage(CheeseShop.class);
         }
+
     }
 }
 // Stap 1  extra knop verwijderen
@@ -65,6 +66,7 @@ public class CheeseShop extends BasePage {
 // Stap 5 Als je tekst invoert en op de knop drukt, dit moet worden weergeven in de info feedback field.
 // Stap 6 Nieuwe kaas toevoegen aan de lijst met ingevoerde tekst.
 //TODO Stap 7 Nieuwe kaas toevoegen door middel van een (AjaxSubmit)
+//TODO Stap 8 Voeg kaas soort, gewicht en land in een aparte tabel zoals in het voorbeeld op jou pagina. (tabellen)
 
 
 

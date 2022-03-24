@@ -24,12 +24,26 @@
 
     <br/>
     Veld om nieuwe kaas soorten toe te voegen.
-    <form wicket:id="form">
-        Kaas soort: <input type="text" wicket:id="soortKaas" size="50"/>
-        <br/>
-        <input  type="submit" value="Submit" id="formsubmit"/>
-    </form>
+    <form wicket:id="form" class="form">
+        <div class="row">
+            <div>
+                <div class="col-xs-3 col-md-3">
+                    Soort Kaas: <input type="text" wicket:id="soortKaas" size="50"/>
+                </div>
 
+                <div class="col-xs-3 col-md-3">
+                    Gewicht: <input type="text" size="50"/>
+                </div>
+                <div class="col-xs-3 col-md-3">
+                    Land herkomst: <input type="text" size="50"/>
+                </div>
+
+
+                <input type="submit" value="Voeg kaas toe" id="formsubmit"/>
+            </div>
+        </div>
+
+    </form>
 </wicket:extend>
 
 </body>
