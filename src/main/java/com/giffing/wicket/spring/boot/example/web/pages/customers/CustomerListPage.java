@@ -1,38 +1,5 @@
 package com.giffing.wicket.spring.boot.example.web.pages.customers;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import org.apache.wicket.Component;
-import org.apache.wicket.ajax.AjaxRequestTarget;
-import org.apache.wicket.authroles.authorization.strategies.role.annotations.AuthorizeInstantiation;
-import org.apache.wicket.extensions.ajax.markup.html.repeater.data.table.AjaxFallbackDefaultDataTable;
-import org.apache.wicket.extensions.markup.html.repeater.data.grid.ICellPopulator;
-import org.apache.wicket.extensions.markup.html.repeater.data.table.AbstractColumn;
-import org.apache.wicket.extensions.markup.html.repeater.data.table.DataTable;
-import org.apache.wicket.extensions.markup.html.repeater.data.table.IColumn;
-import org.apache.wicket.extensions.markup.html.repeater.data.table.PropertyColumn;
-import org.apache.wicket.extensions.markup.html.repeater.data.table.filter.FilterForm;
-import org.apache.wicket.extensions.markup.html.repeater.data.table.filter.FilterToolbar;
-import org.apache.wicket.extensions.markup.html.repeater.data.table.filter.FilteredPropertyColumn;
-import org.apache.wicket.markup.html.form.Button;
-import org.apache.wicket.markup.html.form.CheckBox;
-import org.apache.wicket.markup.html.form.TextField;
-import org.apache.wicket.markup.html.link.BookmarkablePageLink;
-import org.apache.wicket.markup.repeater.Item;
-import org.apache.wicket.model.CompoundPropertyModel;
-import org.apache.wicket.model.IModel;
-import org.apache.wicket.model.Model;
-import org.apache.wicket.model.PropertyModel;
-import org.apache.wicket.model.ResourceModel;
-import org.apache.wicket.protocol.ws.api.WebSocketBehavior;
-import org.apache.wicket.protocol.ws.api.WebSocketRequestHandler;
-import org.apache.wicket.protocol.ws.api.message.IWebSocketPushMessage;
-import org.apache.wicket.request.mapper.parameter.PageParameters;
-import org.apache.wicket.spring.injection.annot.SpringBean;
-import org.apache.wicket.validation.validator.StringValidator;
-import org.wicketstuff.annotation.mount.MountPath;
-
 import com.giffing.wicket.spring.boot.example.model.Customer;
 import com.giffing.wicket.spring.boot.example.repository.services.customer.CustomerRepositoryService;
 import com.giffing.wicket.spring.boot.example.repository.services.customer.filter.CustomerFilter;
@@ -54,6 +21,34 @@ import com.giffing.wicket.spring.boot.example.web.pages.customers.edit.CustomerE
 import com.giffing.wicket.spring.boot.example.web.pages.customers.events.CustomerChangedEvent;
 import com.giffing.wicket.spring.boot.example.web.pages.customers.model.CustomerDataProvider;
 import com.giffing.wicket.spring.boot.example.web.pages.customers.model.UsernameSearchTextField;
+import org.apache.wicket.Component;
+import org.apache.wicket.ajax.AjaxRequestTarget;
+import org.apache.wicket.authroles.authorization.strategies.role.annotations.AuthorizeInstantiation;
+import org.apache.wicket.extensions.ajax.markup.html.repeater.data.table.AjaxFallbackDefaultDataTable;
+import org.apache.wicket.extensions.markup.html.repeater.data.grid.ICellPopulator;
+import org.apache.wicket.extensions.markup.html.repeater.data.table.AbstractColumn;
+import org.apache.wicket.extensions.markup.html.repeater.data.table.DataTable;
+import org.apache.wicket.extensions.markup.html.repeater.data.table.IColumn;
+import org.apache.wicket.extensions.markup.html.repeater.data.table.PropertyColumn;
+import org.apache.wicket.extensions.markup.html.repeater.data.table.filter.FilterForm;
+import org.apache.wicket.extensions.markup.html.repeater.data.table.filter.FilterToolbar;
+import org.apache.wicket.extensions.markup.html.repeater.data.table.filter.FilteredPropertyColumn;
+import org.apache.wicket.markup.html.form.Button;
+import org.apache.wicket.markup.html.form.CheckBox;
+import org.apache.wicket.markup.html.form.TextField;
+import org.apache.wicket.markup.html.link.BookmarkablePageLink;
+import org.apache.wicket.markup.repeater.Item;
+import org.apache.wicket.model.*;
+import org.apache.wicket.protocol.ws.api.WebSocketBehavior;
+import org.apache.wicket.protocol.ws.api.WebSocketRequestHandler;
+import org.apache.wicket.protocol.ws.api.message.IWebSocketPushMessage;
+import org.apache.wicket.request.mapper.parameter.PageParameters;
+import org.apache.wicket.spring.injection.annot.SpringBean;
+import org.apache.wicket.validation.validator.StringValidator;
+import org.wicketstuff.annotation.mount.MountPath;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @MountPath("customers")
 @AuthorizeInstantiation("USER")
@@ -63,6 +58,7 @@ public class CustomerListPage extends BasePage {
 	private CustomerRepositoryService customerRepositoryService;
 	
 	private IModel<CustomerFilter> customerFilterModel;
+
 
 	private FilterForm<CustomerFilter> filterForm;
 	
@@ -96,6 +92,7 @@ public class CustomerListPage extends BasePage {
 		queue(new LabeledFormBorder<>(getString("lastname"), new TextField<String>("lastnameLike").add(StringValidator.minimumLength(3))));
 		queue(new LabeledFormBorder<>(getString("active"), new CheckBox("active")));
 		queue(cancelButton());
+		queue(editButton());
 		
 		customerDataTable(customerDataProvider);
 
@@ -114,6 +111,20 @@ public class CustomerListPage extends BasePage {
 		};
 		cancelButton.setDefaultFormProcessing(false);
 		return cancelButton;
+	}
+
+	private Button editButton() {
+		Button editButton = new Button("edit") {
+			@Override
+			public void onSubmit() {
+
+				customerFilterModel.setObject(new CustomerFilter());
+				updateModel();
+				filterForm.clearInput();
+			}
+		};
+		editButton.setDefaultFormProcessing(true);
+		return editButton;
 	}
 
 	private void customerDataTable(CustomerDataProvider customerDataProvider) {
