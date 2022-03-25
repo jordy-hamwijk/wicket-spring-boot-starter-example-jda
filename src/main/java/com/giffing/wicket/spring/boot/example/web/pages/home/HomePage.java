@@ -6,6 +6,7 @@ import com.giffing.wicket.spring.boot.example.web.pages.BasePage;
 import com.giffing.wicket.spring.boot.example.web.pages.customers.CustomerListPage;
 import com.giffing.wicket.spring.boot.example.web.pages.shop.CheeseShop;
 import com.giffing.wicket.spring.boot.example.web.pages.shop.TodoList;
+import com.giffing.wicket.spring.boot.example.web.pages.shop.oefenbook.FormPage;
 import com.giffing.wicket.spring.boot.example.web.pages.shop.oefenbook.GuestBook;
 import com.giffing.wicket.spring.boot.example.web.pages.websocket.ChatPage;
 import org.apache.wicket.authroles.authorization.strategies.role.annotations.AuthorizeInstantiation;
@@ -26,7 +27,7 @@ public class HomePage extends BasePage {
 		add(new BookmarkablePageLink<String>("KaasShop", CheeseShop.class));
 		add(new BookmarkablePageLink<String>("KaasBoek", GuestBook.class));
 		add(new BookmarkablePageLink<String>("TodoList", TodoList.class));
-
+		add(new BookmarkablePageLink<String>("FormPage", FormPage.class));
 	}
 
 	@Override

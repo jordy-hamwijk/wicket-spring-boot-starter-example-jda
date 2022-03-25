@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<html xmlns:wicket="http://wicket.apache.org">
+<html xmlns:wicket="http://wicket.apache.org" xmlns="http://www.w3.org/1999/html">
 <head>
     <title>Kaas Shop</title>
     <link rel="stylesheet" href="style.css"/>
@@ -7,6 +7,8 @@
 <body>
 
 <wicket:extend>
+    <h1>wicket.markup.html.form.Form</h1>
+
     <table wicket:id="data">
         <thead>
         <tr>
@@ -19,6 +21,7 @@
         <tbody>
 
         <tr wicket:id="items">
+
             <td class="border-1"><input type="checkbox"/></td>
             <td class="border-1" wicket:id="soort"></td>
             <td class="border-1" wicket:id="land"></td>
@@ -31,10 +34,14 @@
     <br/>
     Veld om nieuwe kaas soorten toe te voegen.
     <form wicket:id="form" class="form">
+
         <div class="row">
+
             <div>
+
                 <div class="col-xs-3 col-md-3">
                     Soort Kaas: <input type="text" wicket:id="soortKaas" size="50"/>
+
                 </div>
 
                 <div class="col-xs-3 col-md-3">
@@ -47,15 +54,19 @@
                 <!--TODO Voeg kaas toe -->
 
                 <input type="submit" value="Voeg kaas toe" id="formsubmit"/>
+
                 <input type="button" wicket:id="edit" value="Edit"/>
                 <input type="button" wicket:id="delete" value="Delete"/>
                 <input type="button" wicket:id="cancel" value="Cancel"/>
+                <p>
 
             </div>
+
         </div>
         <br/>
-        <a href="#" wicket:id="ajaxback">Back</a>
-
+        <a href="#" wicket:id="ajaxback">Go Back to the menu</a>
+        <br/>
+        <wicket:link><a href="../home/HomePage.html">[back to the login screen]</a></wicket:link>
 
     </form>
 </wicket:extend>

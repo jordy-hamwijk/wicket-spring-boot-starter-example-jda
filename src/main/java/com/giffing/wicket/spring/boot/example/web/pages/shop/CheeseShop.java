@@ -11,6 +11,7 @@ import org.apache.wicket.markup.html.form.Form;
 import org.apache.wicket.markup.html.form.TextField;
 import org.apache.wicket.markup.html.list.ListItem;
 import org.apache.wicket.markup.html.list.ListView;
+import org.apache.wicket.markup.html.panel.FeedbackPanel;
 import org.apache.wicket.model.CompoundPropertyModel;
 import org.apache.wicket.model.PropertyModel;
 import org.apache.wicket.util.value.ValueMap;
@@ -23,6 +24,7 @@ public class CheeseShop extends BasePage {
     private static final long serialVersionUID = 1L;
     private static List<Cheese> soorten = new ArrayList<>();
     private boolean linkVisible = true;
+
     public CheeseShop() {
         WebMarkupContainer datacontainer = new WebMarkupContainer("data");
         datacontainer.setOutputMarkupId(true);
@@ -56,10 +58,13 @@ public class CheeseShop extends BasePage {
             setMarkupId("soortKaas");
             setMarkupId("landHerkomst");
             setMarkupId("gewicht");
+
             TextField<String> soortKaas = new TextField<>("soortKaas");
             TextField<String> landHerkomst = new TextField<>("landHerkomst");
             TextField<Integer> gewichtKaas = new TextField<>("gewichtKaas");
+
             add(soortKaas, landHerkomst, gewichtKaas);
+
             add(new AjaxFallbackLink<Void>("ajaxback") {
                 @Override
                 public void onClick(Optional<AjaxRequestTarget> targetOptional) {
@@ -72,6 +77,7 @@ public class CheeseShop extends BasePage {
                 @Override
                 public void onSubmit(AjaxRequestTarget target) {
                     onCancelTodo(target);
+
                 }
 
                 @Override
@@ -106,24 +112,34 @@ public class CheeseShop extends BasePage {
 
         @Override
         public void onSubmit() {
-            //hier maak je een nieuwe lege kaas aan
-            ValueMap values = getModelObject();
-            if (true) {
-                soorten.add(new Cheese((String) values.get("soortKaas"), (String) values.get("landHerkomst"), values.getInt("gewichtKaas")));
-                setResponsePage(CheeseShop.class);
-            } else {
-                info("sssss");
-            }
+            FeedbackPanel feedbackPanel = new FeedbackPanel("feedback");
+            add(feedbackPanel);
+
+            // Add a form with an onSubmit implementation that sets a message
+            add(new Form<Void>("form") {
+                @Override
+                protected void onSubmit() {
+
+                    error("the form was submitted!");
+                }
+
+//            ValueMap values = getModelObject();
+//
+//            soorten.add(new Cheese((String) values.get("soortKaas"), (String) values.get("landHerkomst"), values.getInt("gewichtKaas")));
+//            //hier maak je een nieuwe lege kaas aan
+//            setResponsePage(CheeseShop.class);
+
+            });
         }
 
-    }
+        void onCancelTodo(AjaxRequestTarget target) {
+            // toggle the visibility
+            linkVisible = true;
 
-    void onCancelTodo(AjaxRequestTarget target) {
-        // toggle the visibility
-        linkVisible = true;
+            // repaint the panel.
+            target.add(this);
+        }
 
-        // repaint the panel.
-        target.add(this);
     }
 }
 
