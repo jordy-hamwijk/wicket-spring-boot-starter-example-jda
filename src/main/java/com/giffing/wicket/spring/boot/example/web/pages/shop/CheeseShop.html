@@ -7,28 +7,23 @@
 <body>
 
 <wicket:extend>
-
     <table wicket:id="data">
-
         <thead>
         <tr>
+            <th class="border-1">Select</th>
             <th class="border-1">Kaas Soorten</th>
             <th class="border-1">Land Herkomst</th>
             <th class="border-1">Gewicht</th>
         </tr>
         </thead>
         <tbody>
-        <!--TODO input type Checkbox without logica.-->
+
         <tr wicket:id="items">
-            <td class="border-1">
-                <input type="checkbox" wicket:id="soort"/>
-            </td>
-            <td class="border-1">
-                <input type="checkbox" wicket:id="land"/>
-            </td>
-            <td class="border-1">
-                <input type="checkbox" wicket:id="gewicht"/>
-            </td>
+            <td class="border-1"><input type="checkbox"/></td>
+            <td class="border-1" wicket:id="soort"></td>
+            <td class="border-1" wicket:id="land"></td>
+            <td class="border-1" wicket:id="gewicht"></td>
+
         </tr>
         </tbody>
     </table>
