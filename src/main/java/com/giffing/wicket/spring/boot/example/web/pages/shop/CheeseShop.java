@@ -4,6 +4,7 @@ import com.giffing.wicket.spring.boot.example.model.Cheese;
 import com.giffing.wicket.spring.boot.example.web.pages.BasePage;
 import org.apache.wicket.ajax.AjaxRequestTarget;
 import org.apache.wicket.ajax.markup.html.AjaxFallbackLink;
+import org.apache.wicket.ajax.markup.html.form.AjaxButton;
 import org.apache.wicket.markup.html.WebMarkupContainer;
 import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.markup.html.form.Form;
@@ -21,7 +22,7 @@ import java.util.Optional;
 public class CheeseShop extends BasePage {
     private static final long serialVersionUID = 1L;
     private static List<Cheese> soorten = new ArrayList<>();
-
+    private boolean linkVisible = true;
     public CheeseShop() {
         WebMarkupContainer datacontainer = new WebMarkupContainer("data");
         datacontainer.setOutputMarkupId(true);
@@ -42,8 +43,12 @@ public class CheeseShop extends BasePage {
         datacontainer.add(listview);
         add(new CheeseForm("form"));
     }
-    public static class CheeseForm extends Form<ValueMap> {
+
+
+    public class CheeseForm extends Form<ValueMap> {
+
         public CheeseForm(final String id) {
+
             // Construct form with no validation listener
             super(id, new CompoundPropertyModel<>(new ValueMap()));
 
@@ -59,10 +64,43 @@ public class CheeseShop extends BasePage {
                 @Override
                 public void onClick(Optional<AjaxRequestTarget> targetOptional) {
                     setResponsePage(getPage());
+
                 }
             });
 
-            // add the add container for the todo items.
+            add(new AjaxButton("cancel", this) {
+                @Override
+                public void onSubmit(AjaxRequestTarget target) {
+                    onCancelTodo(target);
+                }
+
+                @Override
+                protected void onError(AjaxRequestTarget target) {
+                }
+            });
+            //Edit button
+            add(new AjaxButton("edit", this) {
+                @Override
+                public void onSubmit(AjaxRequestTarget target) {
+                    onCancelTodo(target);
+                }
+
+                @Override
+                protected void onError(AjaxRequestTarget target) {
+                }
+            });
+            //Delete button
+            add(new AjaxButton("delete", this) {
+                @Override
+                public void onSubmit(AjaxRequestTarget target) {
+
+                }
+
+                @Override
+                protected void onError(AjaxRequestTarget target) {
+                }
+            });
+
         }
 
 
@@ -70,10 +108,22 @@ public class CheeseShop extends BasePage {
         public void onSubmit() {
             //hier maak je een nieuwe lege kaas aan
             ValueMap values = getModelObject();
-            soorten.add(new Cheese((String) values.get("soortKaas"), (String) values.get("landHerkomst"), values.getInt("gewichtKaas")));
-            setResponsePage(CheeseShop.class);
+            if (true) {
+                soorten.add(new Cheese((String) values.get("soortKaas"), (String) values.get("landHerkomst"), values.getInt("gewichtKaas")));
+                setResponsePage(CheeseShop.class);
+            } else {
+                info("sssss");
+            }
         }
 
+    }
+
+    void onCancelTodo(AjaxRequestTarget target) {
+        // toggle the visibility
+        linkVisible = true;
+
+        // repaint the panel.
+        target.add(this);
     }
 }
 
