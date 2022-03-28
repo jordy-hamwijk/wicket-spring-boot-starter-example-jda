@@ -31,6 +31,7 @@
         </tbody>
     </table>
 
+
     <br/>
     Veld om nieuwe kaas soorten toe te voegen.
     <form wicket:id="form" class="form">
@@ -51,24 +52,19 @@
                     Gewicht: <input type="text" wicket:id="gewichtKaas" size="50"/>
                 </div>
 
-                <!--TODO Voeg kaas toe -->
-
                 <input type="submit" value="Voeg kaas toe" id="formsubmit"/>
 
-                <input type="button" wicket:id="edit" value="Edit"/>
-                <input type="button" wicket:id="delete" value="Delete"/>
-                <input type="button" wicket:id="cancel" value="Cancel"/>
-                <p>
-
             </div>
-
         </div>
-        <br/>
-        <a href="#" wicket:id="ajaxback">Go Back to the menu</a>
-        <br/>
-        <wicket:link><a href="../home/HomePage.html">[back to the login screen]</a></wicket:link>
 
+        <br/>
     </form>
+    <p>
+    <form wicket:id="forms">
+        <input type="submit" value="click me to submit the form and display a message"/>
+    </form>
+    <span wicket:id="feedback">feedbackmessages will be put here</span>
+    </p>
 </wicket:extend>
 
 </body>
