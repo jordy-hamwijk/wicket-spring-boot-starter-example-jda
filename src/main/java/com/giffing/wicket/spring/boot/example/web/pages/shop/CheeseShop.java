@@ -12,6 +12,8 @@ import org.apache.wicket.markup.html.panel.FeedbackPanel;
 import org.apache.wicket.model.CompoundPropertyModel;
 import org.apache.wicket.model.PropertyModel;
 import org.apache.wicket.util.value.ValueMap;
+import org.apache.wicket.validation.validator.RangeValidator;
+import org.apache.wicket.validation.validator.StringValidator;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -51,10 +53,18 @@ public class CheeseShop extends BasePage {
             super(id, new CompoundPropertyModel<>(new ValueMap()));
 
             TextField<String> soortKaas = new TextField<>("soortKaas");
-            TextField<String> landHerkomst = new TextField<>("landHerkomst");
-            TextField<Integer> gewichtKaas = new TextField<>("gewichtKaas");
-            // verplicht om het veld in te vullen.
+            soortKaas.add(StringValidator.lengthBetween(3, 20));
             soortKaas.setRequired(true);
+
+            TextField<String> landHerkomst = new TextField<>("landHerkomst");
+            //  landHerkomst.add(Pattern.compile("^[A-Za-z]+$",));
+            landHerkomst.add(StringValidator.lengthBetween(3, 20));
+            landHerkomst.setRequired(true);
+
+            TextField<Integer> gewichtKaas = new TextField<>("gewichtKaas", Integer.class);
+            gewichtKaas.add(RangeValidator.range(101, 10000));
+            gewichtKaas.setRequired(true);
+
             add(soortKaas, landHerkomst, gewichtKaas);
         }
 
