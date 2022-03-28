@@ -11,7 +11,6 @@ import org.apache.wicket.markup.html.form.Form;
 import org.apache.wicket.markup.html.form.TextField;
 import org.apache.wicket.markup.html.list.ListItem;
 import org.apache.wicket.markup.html.list.ListView;
-import org.apache.wicket.markup.html.panel.FeedbackPanel;
 import org.apache.wicket.model.CompoundPropertyModel;
 import org.apache.wicket.model.PropertyModel;
 import org.apache.wicket.util.value.ValueMap;
@@ -112,34 +111,21 @@ public class CheeseShop extends BasePage {
 
         @Override
         public void onSubmit() {
-            FeedbackPanel feedbackPanel = new FeedbackPanel("feedback");
-            add(feedbackPanel);
 
-            // Add a form with an onSubmit implementation that sets a message
-            add(new Form<Void>("form") {
-                @Override
-                protected void onSubmit() {
+            ValueMap values = getModelObject();
 
-                    error("the form was submitted!");
-                }
-
-//            ValueMap values = getModelObject();
-//
-//            soorten.add(new Cheese((String) values.get("soortKaas"), (String) values.get("landHerkomst"), values.getInt("gewichtKaas")));
-//            //hier maak je een nieuwe lege kaas aan
-//            setResponsePage(CheeseShop.class);
-
-            });
+            soorten.add(new Cheese((String) values.get("soortKaas"), (String) values.get("landHerkomst"), values.getInt("gewichtKaas")));
+            //hier maak je een nieuwe lege kaas aan
+            setResponsePage(CheeseShop.class);
         }
+    }
 
-        void onCancelTodo(AjaxRequestTarget target) {
-            // toggle the visibility
-            linkVisible = true;
+    void onCancelTodo(AjaxRequestTarget target) {
+        // toggle the visibility
+        linkVisible = true;
 
-            // repaint the panel.
-            target.add(this);
-        }
-
+        // repaint the panel.
+        target.add(this);
     }
 }
 
