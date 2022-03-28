@@ -24,17 +24,8 @@ public class CheeseShop extends BasePage {
         WebMarkupContainer datacontainer = new WebMarkupContainer("data");
         datacontainer.setOutputMarkupId(true);
         add(datacontainer);
+
         FeedbackPanel feedbackPanel = new FeedbackPanel("feedback");
-
-        // Add a form with an onSubmit implementation that sets a message
-        add(new Form<Void>("forms") {
-            @Override
-            protected void onSubmit() {
-
-                error("the form was submitted!");
-            }
-
-        });
         add(feedbackPanel);
 
         ListView<Cheese> listview = new ListView<>("items", soorten) {
@@ -48,9 +39,9 @@ public class CheeseShop extends BasePage {
             }
         };
         datacontainer.add(listview);
+
         add(new CheeseForm("form"));
     }
-
 
     public class CheeseForm extends Form<ValueMap> {
 
@@ -59,21 +50,16 @@ public class CheeseShop extends BasePage {
             // Construct form with no validation listener
             super(id, new CompoundPropertyModel<>(new ValueMap()));
 
-            // this is just to make the unit test happy
-            setMarkupId("soortKaas");
-            setMarkupId("landHerkomst");
-            setMarkupId("gewicht");
-
             TextField<String> soortKaas = new TextField<>("soortKaas");
             TextField<String> landHerkomst = new TextField<>("landHerkomst");
             TextField<Integer> gewichtKaas = new TextField<>("gewichtKaas");
-
+            // verplicht om het veld in te vullen.
+            soortKaas.setRequired(true);
             add(soortKaas, landHerkomst, gewichtKaas);
         }
 
         @Override
         public void onSubmit() {
-
             ValueMap values = getModelObject();
 
             soorten.add(new Cheese((String) values.get("soortKaas"), (String) values.get("landHerkomst"), values.getInt("gewichtKaas")));
@@ -82,14 +68,5 @@ public class CheeseShop extends BasePage {
 
         }
     }
+
 }
-
-
-
-
-
-
-
-
-
-

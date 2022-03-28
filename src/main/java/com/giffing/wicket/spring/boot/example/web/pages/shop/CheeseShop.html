@@ -7,7 +7,7 @@
 <body>
 
 <wicket:extend>
-    <h1>wicket.markup.html.form.Form</h1>
+
 
     <table wicket:id="data">
         <thead>
@@ -31,7 +31,7 @@
         </tbody>
     </table>
 
-
+    <span wicket:id="feedback">feedbackmessages will be put here</span>
     <br/>
     Veld om nieuwe kaas soorten toe te voegen.
     <form wicket:id="form" class="form">
@@ -52,7 +52,7 @@
                     Gewicht: <input type="text" wicket:id="gewichtKaas" size="50"/>
                 </div>
 
-                <input type="submit" value="Voeg kaas toe" id="formsubmit"/>
+                <input type="submit" value="Voeg kaas toe" id="feedback"/>
 
             </div>
         </div>
@@ -60,10 +60,8 @@
         <br/>
     </form>
     <p>
-    <form wicket:id="forms">
-        <input type="submit" value="click me to submit the form and display a message"/>
-    </form>
-    <span wicket:id="feedback">feedbackmessages will be put here</span>
+
+
     </p>
 </wicket:extend>
 
