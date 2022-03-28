@@ -4,6 +4,7 @@ import com.giffing.wicket.spring.boot.example.model.Cheese;
 import com.giffing.wicket.spring.boot.example.web.pages.BasePage;
 import org.apache.wicket.markup.html.WebMarkupContainer;
 import org.apache.wicket.markup.html.basic.Label;
+import org.apache.wicket.markup.html.form.Button;
 import org.apache.wicket.markup.html.form.Form;
 import org.apache.wicket.markup.html.form.TextField;
 import org.apache.wicket.markup.html.list.ListItem;
@@ -53,8 +54,10 @@ public class CheeseShop extends BasePage {
             super(id, new CompoundPropertyModel<>(new ValueMap()));
 
             TextField<String> soortKaas = new TextField<>("soortKaas");
+
             soortKaas.add(StringValidator.lengthBetween(3, 20));
             soortKaas.setRequired(true);
+
 
             TextField<String> landHerkomst = new TextField<>("landHerkomst");
             //  landHerkomst.add(Pattern.compile("^[A-Za-z]+$",));
@@ -65,8 +68,13 @@ public class CheeseShop extends BasePage {
             gewichtKaas.add(RangeValidator.range(101, 10000));
             gewichtKaas.setRequired(true);
 
+            //Verwijder knop
+            Button button = new Button("verwijderen");
+            add(button);
+
             add(soortKaas, landHerkomst, gewichtKaas);
         }
+
 
         @Override
         public void onSubmit() {
